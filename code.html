@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Fizz Buzz</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #0470fd;">
+        <!-- <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button> -->
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="solve.html">Solve</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="code.html">Code<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Jumbotron sections -->
+    <div class="jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-3">My Code</h1>
+            <p class="lead">View my javascript below</p>
+            <hr class="my-2">
+        </div>
+    </div>
+
+    <div class="container">
+    <figure>
+        <figcaption class="text-center">Javascript for Taco-cat Palindrome App</figcaption>
+            <pre class="prettyprint rounded">
+                <code>
+                    // Custom JS
+                    document.getElementById("btnDemo").addEventListener("click", function(){
+
+                        // start with true and set false later if its not a palindrome
+                        let isPalindrome = true;
+                        let isWord = true; // we want the user to type something
+                        let inputWordOriginal = document.getElementById("input1").value;
+
+                        // change the input to ingnore caps and other characters
+                        let inputWord = inputWordOriginal.toLowerCase(); // make all characters lowercase
+                        inputWord = inputWord.replace(/[^a-z0-9]/g, ""); // ignore the characters that are not letters
+                        inputWord = inputWord.replace(/ /g,'') // ignore white spaces
+
+                        // loop through half the size of the input word
+                        for(let i=0; i < inputWord.length/2; i++){
+                            // lets shorten the variable name
+                            let length = inputWord.length;
+
+                            // lets look at the exact opposite side to see if its the same character
+                            if(inputWord.charAt(i) != inputWord.charAt(length-1-i)){
+                                // if the characters are not the same then it cant be a palindrome
+                                isPalindrome = false;
+                            }
+                        }
+
+                        // if there is no text
+                        if(isPalindrome && inputWord.length <= 0){
+                            document.getElementById("output").innerText=`Sorry, please enter some text.`; 
+                        }
+                        // if we do not have a palindrome
+                        else if(!isPalindrome){
+                            // lets output that the phrase is not a palindrome
+                            document.getElementById("output").innerText=`Sorry, ${inputWordOriginal} is not a palindrome.`; 
+                        }
+                        //otherwise it must be a palindrome
+                        else{
+                            // lets output that the phrase is a palindrome
+                            document.getElementById("output").innerText=`Congratulations! ${inputWordOriginal} is a palindrome`; 
+                        }
+                    });
+                </code>
+            </pre>
+        </figure>
+    </div>
+
+    <div class="text-center">
+        <p class="lead">
+            <a class="m-3 mb-5 btn btn-primary btn-lg" target="_blank"
+            href="https://adenjessee.netlify.app/" role="button">My Portfilio</a>
+            <a class="m-3 mb-5 btn btn-primary btn-lg"  target="_blank"
+            href="https://github.com/adenjessee/TacoCat" role="button">GitHub Repo</a>
+        </p>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
+
+</body>
+</html>
