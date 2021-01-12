@@ -50,44 +50,77 @@
             <pre class="rounded line-numbers data-line">
 <code class="language-javascript">
 // Custom JS
-document.getElementById("btnDemo").addEventListener("click", function(){
 
-    // start with true and set false later if its not a palindrome
-    let isPalindrome = true;
-    let isWord = true; // we want the user to type something
-    let inputWordOriginal = document.getElementById("input1").value;
+// is the input a number? dont let user type anything if not a number
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
 
-    // change the input to ingnore caps and other characters
-    let inputWord = inputWordOriginal.toLowerCase(); // make all characters lowercase
-    inputWord = inputWord.replace(/[^a-z0-9]/g, ""); // ignore the characters that are not letters
-    inputWord = inputWord.replace(/ /g,'') // ignore white spaces
+// Clear the document when the clear button is clicked
+document.getElementById("clearButton").addEventListener("click", function(){
+    document.getElementById("table").innerHTML = "";
+    document.getElementById("input1").value = "";
+    document.getElementById("input2").value = "";
+});
 
-    // loop through half the size of the input word
-    for(let i=0; i < inputWord.length/2; i++){
-        // lets shorten the variable name
-        let length = inputWord.length;
+// When the user pushes the Buzz button
+document.getElementById("buzzButton").addEventListener("click", function(){
+    let largeString = ""; // to store all the HTML used for the table
+    let styleStrings = []; // to store all the color styles for the cells of the table
+    let innerStrings = []; // to store all the FIZZ and BUZZ strings to show in the table
 
-        // lets look at the exact opposite side to see if its the same character
-        if(inputWord.charAt(i) != inputWord.charAt(length-1-i)){
-            // if the characters are not the same then it cant be a palindrome
-            isPalindrome = false;
+    // make 100 elements on each array
+    for(let i = 0; i <= 100; i++){
+        styleStrings.push(" ");
+        innerStrings.push(`${i}`);
+    }
+
+    // get the numbers from whatever the user has typed in the input field
+    let number1 = parseInt(document.getElementById("input1").value, 10);
+    let number2 = parseInt(document.getElementById("input2").value, 10);
+
+    // Loop though all parts of the arrays and set them to the multiples values
+    // The center logic of how FIZZ BUZZ works using modulus
+    for(let i = 0; i <= 100; i++){
+        if(i%number1 == 0){
+            styleStrings[i]="background-color: rgb(142, 159, 255);";
+            innerStrings[i]="FIZZ";
+        }
+        if(i%number2 == 0){
+            styleStrings[i]="background-color: rgb(37, 255, 84);";
+            innerStrings[i]="BUZZ";
+        }
+        if(i%number1 == 0 && i%number2 == 0){
+            styleStrings[i]="background-color: rgb(255, 80, 80);";
+            innerStrings[i]="FIZZ BUZZ";
         }
     }
 
-    // if there is no text
-    if(isPalindrome && inputWord.length <= 0){
-        document.getElementById("output").innerText=`Sorry, please enter some text.`; 
+    // If the lengths of any of the input fields are 0 then tell the user to type something 
+    if(document.getElementById("input1").value.trim().length == 0 || document.getElementById("input2").value.trim().length == 0){
+        document.getElementById("textBelow").innerText = "Please type numbers in each field.";
     }
-    // if we do not have a palindrome
-    else if(!isPalindrome){
-        // lets output that the phrase is not a palindrome
-        document.getElementById("output").innerText=`Sorry, ${inputWordOriginal} is not a palindrome.`; 
-    }
-    //otherwise it must be a palindrome
+
+    //otherwise we have somthing to output and we can set the large string to all the HTML with 
+    // the features we assigned to the arrays
     else{
-        // lets output that the phrase is a palindrome
-        document.getElementById("output").innerText=`Congratulations! ${inputWordOriginal} is a palindrome`; 
+        for(let i = 1; i <= 100; i+=4){
+            largeString += `<tr>
+                                <td style="${styleStrings[i]}" id="id${i}">${innerStrings[i]}</td>
+                                <td style="${styleStrings[i+1]}" id="id${i+1}">${innerStrings[i+1]}</td>
+                                <td style="${styleStrings[i+2]}" id="id${i+2}">${innerStrings[i+2]}</td>
+                                <td style="${styleStrings[i+3]}" id="id${i+3}">${innerStrings[i+3]}</td>
+                            </tr>`;
+        }
     }
+
+    // Set the HTML string to the inner HTML of the table which applies everything to the page
+    document.getElementById("table").innerHTML = largeString;
 });
 </code>
             </pre>
