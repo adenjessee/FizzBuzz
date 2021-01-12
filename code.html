@@ -46,7 +46,7 @@
 
     <div class="container">
     <figure>
-        <figcaption class="text-center">Javascript for Taco-cat Palindrome App</figcaption>
+        <figcaption class="text-center">Javascript for FIZZ BUZZ App</figcaption>
             <pre class="rounded line-numbers data-line">
 <code class="language-javascript">
 // Custom JS
@@ -102,7 +102,8 @@ document.getElementById("buzzButton").addEventListener("click", function(){
     }
 
     // If the lengths of any of the input fields are 0 then tell the user to type something 
-    if(document.getElementById("input1").value.trim().length == 0 || document.getElementById("input2").value.trim().length == 0){
+    if(document.getElementById("input1").value.trim().length == 0 || 
+       document.getElementById("input2").value.trim().length == 0){
         document.getElementById("textBelow").innerText = "Please type numbers in each field.";
     }
 
@@ -110,12 +111,14 @@ document.getElementById("buzzButton").addEventListener("click", function(){
     // the features we assigned to the arrays
     else{
         for(let i = 1; i <= 100; i+=4){
+</code><code class="language-html"><script type="text/html">
             largeString += `<tr>
                                 <td style="${styleStrings[i]}" id="id${i}">${innerStrings[i]}</td>
                                 <td style="${styleStrings[i+1]}" id="id${i+1}">${innerStrings[i+1]}</td>
                                 <td style="${styleStrings[i+2]}" id="id${i+2}">${innerStrings[i+2]}</td>
                                 <td style="${styleStrings[i+3]}" id="id${i+3}">${innerStrings[i+3]}</td>
-                            </tr>`;
+                            </tr>`;</script>
+                        </code><code class="language-javascript"></code>
         }
     }
 
